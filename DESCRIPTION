@@ -1,0 +1,26 @@
+Package: blockwatch
+Title: API Wrapper for blockwatch.cc
+Version: 1.0.3
+Date: 2019-05-30
+Authors@R: c(
+    person("Alexander Eichhorn", role=c("aut", "cre"), email="alex@blockwatch.cc"),
+    person("Raymond McTaggart", role=c("aut"), email="ray@quandl.com"),
+    person("KIDTSUNAMI UG", role="cph"))
+Maintainer: Alexander Eichhorn <alex@blockwatch.cc>
+Description: Functions for interacting directly with the Blockwatch Data API to offer data in a number of formats usable in R. For more information go to <https://blockwatch.cc/docs/api>. For more help on the package itself go to <https://blockwatch.cc/docs/r>.
+Imports:
+    httr (>= 0.6.1),
+    zoo,
+    jsonlite (>= 0.9.14)
+Suggests:
+    testthat (>= 0.10.0),
+    roxygen2,
+    timeSeries
+Depends:
+    R (>= 2.15.0),
+    xts
+License: MIT + file LICENSE
+URL: https://github.com/blockwatch-cc/blockwatch-r
+BugReports: https://github.com/blockwatch-cc/blockwatch-r/issues
+RoxygenNote: 6.1.1
+Encoding: UTF-8

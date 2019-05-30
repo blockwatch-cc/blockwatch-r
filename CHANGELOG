@@ -1,0 +1,18 @@
+### Version 1.0.3
+
+- allow setting the base_url
+- renamed functions for consistency
+- removed unused/unsupported functions
+
+### Version 1.0.2
+
+- removed unused code
+- detect column types for table and series responses
+- fixed pagination
+- add all api metadata responses as dataframe attributes
+- append URL query params only when specified
+
+### Version 1.0.0
+
+- forked from Quandl.r package
+
