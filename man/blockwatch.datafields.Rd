@@ -4,12 +4,12 @@
 \alias{blockwatch.datafields}
 \title{Lists datafields}
 \usage{
-blockwatch.datafields(code, silent = FALSE)
+blockwatch.datafields(dataset_code, silent = FALSE)
 }
 \arguments{
-\item{silent}{Prints the results when FALSE (default).}
-
 \item{dataset_code}{Fully qualified Blockwatch dataset code (DB_CODE/SET_CODE).}
+
+\item{silent}{Prints the results when FALSE (default).}
 }
 \description{
 Lists datafields

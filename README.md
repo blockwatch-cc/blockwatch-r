@@ -13,17 +13,6 @@ To install from Github via the [devtools](https://cran.r-project.org/package=dev
     library(devtools)
     install_github("blockwatch-cc/blockwatch-r")
 
-## CRAN
-
-*Note: Blockwatch is not yet on CRAN, use Github method above.*
-
-To install the most recent package from CRAN:
-
-    install.packages("blockwatch")
-    library(blockwatch)
-
-Note that the version on CRAN might not reflect the most recent changes made to this package.
-
 # Authentication
 
 To make full use of the package we recommend you set your [api key](https://blockwatch.cc/docs/api#getting-started). To do this create or sign into your account and go to your [account api key page](https://blockwatch.cc/account/profile#apikey). Then input your API key (with quotes):
@@ -155,40 +144,22 @@ blockwatch.table('BITFINEX:TRADE/BTC_USD', time.gte='2019-01-01', columns='time,
 
 In this query we are asking for more pages of data, a trade time that is greater than or equal to 2019-01-01 and we are selecting only columns time, price and amount for return rather than all available columns.
 
-## Search
+## Help
 
-Searching Blockwatch from within the R console is not supported right now. When available the search function will look like:
+Blockwatch-R can display inline help for databases, datasets and datafields in the R console:
 
 ```r
-blockwatch.search(query = "Search Term", page = n, database_code = "Specific database to search", silent = TRUE|FALSE)
+blockwatch.help("BITFINEX:OHLCV")
+blockwatch.help("BITFINEX:OHLCV/BTC_USD")
+blockwatch.help("BITFINEX:OHLCV/BTC_USD/vwap")
 ```
 
-* **query**: Required; Your search term, as a string
-* **page**: Optional; page number of search you wish returned, defaults to 1.
-* **limit**: Optional; number of results per page, defaults to 10 in the Blockwatch R package.
-* **database_code**: Optional; Name of a specific database you wish to search, as a string
-* **silent**: Optional; specifies whether you wish the first three results printed to the console, defaults to True (see example below).
-
-Which outputs to console a list containing the following information for every item returned by the search:
-
-* Name
-* Blockwatch code
-* Description
-* Frequency
-* Column names
-
-
-### Example
-A search for BTC in the BITFINEX:TRADE database.
+In addition you can list subscribed databases, datasets and datafields:
 
 ```r
-blockwatch.search("BTC", database_code = "BITFINEX:TRADE", limit = 3)
-```
-
-prints:
-
-```r
-TODO
+blockwatch.databases()
+blockwatch.datasets("BITFINEX:OHLCV")
+blockwatch.datafields("BITFINEX:OHLCV/BTC_USD")
 ```
 
 

@@ -1,91 +1,3 @@
-#' Search all Blockwatch databases
-#'
-#' @details Set your \code{api_key} with \code{blockwatch.api_key} function. For instructions on finding your api key go to \url{https://blockwatch.cc/account/profile#apikey}
-#'
-#' For instructions on finding your authentication token go to https://blockwatch.cc/account/profile#apikey
-#' @param query Search terms
-#' @param silent Prints the results when FALSE (default).
-#' @param per_page Number of results returned per page.
-#' @param ... Additional named values that are sent as Blockwatch API parameters.
-#' @return Search results returned as a data.frame.
-#' @seealso \code{\link{blockwatch.api_key}}
-#' @examples \dontrun{
-#' search.results <- blockwatch.search("oil")
-#' }
-#' @export
-blockwatch.search <- function(query, silent = FALSE, per_page = 10, ...) {
-  params <- list()
-  params$query <- query
-  params$per_page <- per_page
-  params <- c(params, list(...))
-
-  path <- "databases"
-  json <- do.call(blockwatch.api, c(path=path, params))
-
-  # results is a dataframe
-  results <- structure(json$datasets, meta = json$meta)
-
-  if (!is.null(nrow(results)) && nrow(results) > 0) {
-    for (i in 1:nrow(results)) {
-      name <- results[i,]$name
-      code <- paste(results[i,]$database_code, "/", results[i,]$dataset_code, sep="")
-      desc <- results[i,]$description
-      freq <- results[i,]$frequency
-      colname <- results[i,]$columns$name
-      if (!silent) {
-        cat(name, "\nCode: ", code, "\nDesc: ", desc, "\nFreq: ", freq, "\nCols: ", paste(unlist(colname), collapse=" | "), "\n\n", sep="")
-      }
-    }
-  } else {
-    warning("No datasets found")
-  }
-  invisible(results)
-}
-
-#' Search all Blockwatch databases
-#'
-#' @details Set your \code{api_key} with \code{blockwatch.api_key} function. For instructions on finding your api key go to \url{https://blockwatch.cc/account/profile#apikey}
-#'
-#' For instructions on finding your authentication token go to https://blockwatch.cc/account/profile#apikey
-#' @param query Search terms
-#' @param silent Prints the results when FALSE (default).
-#' @param per_page Number of results returned per page.
-#' @param ... Additional named values that are sent as Blockwatch API parameters.
-#' @return Search results returned as a data.frame.
-#' @seealso \code{\link{blockwatch.api_key}}
-#' @examples \dontrun{
-#' search.results <- blockwatch.search("oil")
-#' }
-#' @export
-blockwatch.search <- function(query, silent = FALSE, per_page = 10, ...) {
-  params <- list()
-  params$query <- query
-  params$per_page <- per_page
-  params <- c(params, list(...))
-
-  path <- "database"
-  json <- do.call(blockwatch.api, c(path=path, params))
-
-  # results is a dataframe
-  results <- structure(json$datasets, meta = json$meta)
-
-  if (!is.null(nrow(results)) && nrow(results) > 0) {
-    for (i in 1:nrow(results)) {
-      name <- results[i,]$name
-      code <- paste(results[i,]$database_code, "/", results[i,]$dataset_code, sep="")
-      desc <- results[i,]$description
-      freq <- results[i,]$frequency
-      colname <- results[i,]$columns$name
-      if (!silent) {
-        cat(name, "\nCode: ", code, "\nDesc: ", desc, "\nFreq: ", freq, "\nCols: ", paste(unlist(colname), collapse=" | "), "\n\n", sep="")
-      }
-    }
-  } else {
-    warning("No datasets found")
-  }
-  invisible(results)
-}
-
 #' Help displays information about a Blockwatch database, dataset and datafields
 #'
 #' @details Set your \code{api_key} with \code{blockwatch.api_key} function. For instructions on finding your api key go to \url{https://blockwatch.cc/account/profile#apikey}
@@ -209,9 +121,9 @@ blockwatch.datasets <- function(database_code, silent = FALSE) {
 #' blockwatch.datafields("BITFINEX:OHLCV/BTC_USD")
 #' }
 #' @export
-blockwatch.datafields <- function(code, silent = FALSE) {
+blockwatch.datafields <- function(dataset_code, silent = FALSE) {
   params <- list()
-  path <- paste("databases", code, "metadata", sep = "/")
+  path <- paste("databases", dataset_code, "metadata", sep = "/")
   json <- do.call(blockwatch.api, c(path=path, params))
 
   if (length(json) == 0) {
