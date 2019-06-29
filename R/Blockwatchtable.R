@@ -22,14 +22,22 @@ blockwatch.table <- function(table_code, paginate = FALSE, ...) {
 
   # make request for first page of data
   json <- do.call(blockwatch.api, c(path = path, params))
-  data <- json$data
+
+  # check embedded error
+  if (!is.null(json$error)) {
+    stop(paste(jsonlite::toJSON(json$error, auto_unbox=TRUE, pretty=TRUE)), call. = FALSE)
+  }
+
+  df <- as.data.frame(json$data, stringsAsFactors = FALSE)
   cursor <- json$cursor
-  df <- as.data.frame(data, stringsAsFactors = FALSE)
 
   # continue to make requests for data if paginate=TRUE and there is data
   while (isTRUE(paginate) && length(json$data) > 0) {
     params["cursor"] <- cursor
     json <- do.call(blockwatch.api, c(path = path, params))
+    if (!is.null(json$error)) {
+      stop(paste(jsonlite::toJSON(json$error, auto_unbox=TRUE, pretty=TRUE)), call. = FALSE)
+    }
     df_page <- as.data.frame(json$data, stringsAsFactors = FALSE)
 
     df <- rbind(df, df_page)
@@ -54,7 +62,7 @@ blockwatch.table <- function(table_code, paginate = FALSE, ...) {
 
   # if df is empty create an empty df with ncolumns set
   # or else we won't be able to set the column names
-  ncols <- length(json$columns)
+  ncols <- length(json$columns$code)
   if (nrow(df) <= 0 && ncols > 0) {
     df <- data.frame(matrix(ncol = ncols, nrow = 0))
   }

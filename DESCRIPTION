@@ -1,7 +1,7 @@
 Package: blockwatch
 Title: API Wrapper for blockwatch.cc
-Version: 1.0.3
-Date: 2019-05-30
+Version: 1.0.4
+Date: 2019-06-29
 Authors@R: c(
     person("Alexander Eichhorn", role=c("aut", "cre"), email="alex@blockwatch.cc"),
     person("Raymond McTaggart", role=c("aut"), email="ray@quandl.com"),

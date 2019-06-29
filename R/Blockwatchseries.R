@@ -200,6 +200,10 @@ blockwatch.series.get <- function(code, params) {
   path <- paste0("series/", code)
   json <- do.call(blockwatch.api, c(path = path, params))
 
+  if (!is.null(json$error)) {
+    stop(paste(jsonlite::toJSON(json$error, auto_unbox=TRUE, pretty=TRUE)), call. = FALSE)
+  }
+
   if (length(json$data) == 0) {
     # if df is empty create an empty df with ncolumns set
     # or else we won't be able to set the column names

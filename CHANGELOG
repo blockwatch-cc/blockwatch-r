@@ -1,3 +1,8 @@
+### Version 1.0.4
+
+- print embedded result errors
+- fix column mapping for empty responses
+
 ### Version 1.0.3
 
 - allow setting the base_url
