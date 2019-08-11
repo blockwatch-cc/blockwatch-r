@@ -227,7 +227,7 @@ blockwatch.series.get <- function(code, params) {
     } else if (grepl("^datetime", column_types[i])) {
       df[, i] <- as.POSIXct(as.numeric(df[, i])/1000, origin = "1970-01-01", tz="UTC")
     } else if (grepl("^date", column_types[i])) {
-      df[, i] <- as.Date(df[, i])
+      df[, i] <- as.POSIXct(as.numeric(df[, i])/1000, origin = "1970-01-01", tz="UTC")
     } else if (grepl("^bool", column_types[i])) {
       df[, i] <- as.logical(as.numeric(df[, i]))
     } else {
