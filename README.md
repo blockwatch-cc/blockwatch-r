@@ -1,7 +1,7 @@
 Blockwatch R Package
 =========
 
-This is Blockwatch's R package. The Blockwatch R package uses the [Blockwatch API](https://blockwatch.cc/docs/api). The official Blockwatch R package manual can be found [here](https://blockwatch.cc/docs/r).
+This is Blockwatch's R package. This package allows you to fetch on-chain data and time-series statistics for Bitcoin, Bitcoin Cash, Bitcoin SV, Litecoin, Dogecoin, and Tezos from the [Blockwatch Data API](https://blockwatch.cc/docs/api). The official Blockwatch R package manual can be found [here](https://blockwatch.cc/docs/r).
 
 For more information please contact alex@blockwatch.cc
 
