@@ -40,7 +40,7 @@ blockwatch.default_url <- function() {
 
 blockwatch.table.max_rows <- function() {
   if (blockwatch.base_url() == blockwatch.default_url()) {
-    return(10000000)
+    return(1000000)
   }
   return (0)
 }
